@@ -1,0 +1,32 @@
+pipeline {
+  
+    agent any 
+    tools{
+        maven "M3"
+    }
+
+    stages {
+        stage('Git clone') {
+            steps {
+               git 'https://github.com/Alekhya-kandala/maven-web-app.git'
+            }
+        }
+       stage('Maven build') {
+            steps {
+               sh 'mvn clean package'
+            }
+        }
+       stage('DI') {
+            steps {
+               sh 'docker build -t alekhyaa .'
+            }
+        }
+       stage('DC') {
+            steps {
+               sh 'docker stop sample1'
+               sh 'docker rm sample1'
+               sh 'docker run -d -p 9090:8080 --name sample1 alekhyaa'
+            }
+        }
+    }  
+}
