@@ -23,8 +23,6 @@ pipeline {
         }
        stage('DC') {
             steps {
-               sh 'docker stop sample1'
-               sh 'docker rm sample1'
                sh 'docker run -d -p 9090:8080 --name sample1 alekhyaa'
             }
         }
