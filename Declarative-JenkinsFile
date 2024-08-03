@@ -2,13 +2,13 @@ pipeline {
     agent any
     
     tools{
-        maven "Maven-3.9.4"
+        maven "M3"
     }
 
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/ashokitschool/maven-web-app.git'
+                git 'https://github.com/Alekhya-kandala/Maven_Web_App.git'
             }
         }
          stage('Build') {
